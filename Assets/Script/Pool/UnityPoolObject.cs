@@ -1,0 +1,23 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class UnityPoolObject : MonoBehaviour , IPoolObject<string> 
+{
+	public virtual string Group { get {return name;} }  
+
+	public virtual void Create()  
+	{ 
+		gameObject.SetActive(true);
+	}
+
+	public virtual void OnPush() 
+	{
+		gameObject.SetActive(false);
+	}
+
+	public virtual void Push() 
+	{		
+		UnityPoolManager.Instance.Push(Group, this);
+	}
+ 
+}
